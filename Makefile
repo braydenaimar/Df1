@@ -8,11 +8,12 @@ CFLAGS=-Wall -c
 # Linker Options
 LDFLAGS=-Wall
 
-all: daemon
+all: df1
+OBJECTS = calc_address.o common.o df1.o main.o read_A2.o read_boolean.o read_float.o read_integer.o read_socket.o select_fnct.o serial.o server.o write_AA.o write_AB.o write_boolean.o write_float.o write_integer.o
 
 # Link Files
-daemon: calc_address.o common.o df1.o main.o read_A2.o read_boolean.o read_float.o read_integer.o read_socket.o select_fnct.o serial.o server.o write_AA.o write_AB.o write_boolean.o write_float.o write_integer.o
-	$(CC) $(LDFLAGS) calc_address.o common.o df1.o main.o read_A2.o read_boolean.o read_float.o read_integer.o read_socket.o select_fnct.o serial.o server.o write_AA.o write_AB.o write_boolean.o write_float.o write_integer.o -o daemon
+df1: $(OBJECTS)
+	$(CC) $(LDFLAGS) $(OBJECTS) -o df1
 
 # Compile Dependencies
 calc_address.o: calc_address.c df1.h
@@ -65,3 +66,6 @@ write_float.o: write_float.c df1.h
 
 write_integer.o: write_integer.c df1.h
 	$(CC) $(CFLAGS) write_integer.c
+
+clean:
+	rm df1 $(OBJECTS)
