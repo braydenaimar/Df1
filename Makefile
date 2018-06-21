@@ -1,3 +1,11 @@
+#   __  __       _         __ _ _
+#  |  \/  | __ _| | _____ / _(_) | ___
+#  | |\/| |/ _` | |/ / _ \ |_| | |/ _ \
+#  | |  | | (_| |   <  __/  _| | |  __/
+#  |_|  |_|\__,_|_|\_\___|_| |_|_|\___|
+#
+#  @author: Brayden Aimar
+#  @date: Thurs, June 21st 2018
 
 # Compiler
 CC=gcc
@@ -9,13 +17,16 @@ CFLAGS=-Wall -c
 LDFLAGS=-Wall
 
 all: df1
-OBJECTS = calc_address.o common.o df1.o main.o read_A2.o read_boolean.o read_float.o read_integer.o read_socket.o select_fnct.o serial.o server.o write_AA.o write_AB.o write_boolean.o write_float.o write_integer.o
+OBJECTS = main.o calc_address.o common.o df1.o read_A2.o read_boolean.o read_float.o read_integer.o read_socket.o select_fnct.o serial.o server.o write_AA.o write_AB.o write_boolean.o write_float.o write_integer.o
 
 # Link Files
 df1: $(OBJECTS)
 	$(CC) $(LDFLAGS) $(OBJECTS) -o df1
 
 # Compile Dependencies
+main.o: main.c df1.h
+	$(CC) $(CFLAGS) main.c
+
 calc_address.o: calc_address.c df1.h
 	$(CC) $(CFLAGS) calc_address.c
 
@@ -24,9 +35,6 @@ common.o: common.c df1.h
 
 df1.o: df1.c df1.h
 	$(CC) $(CFLAGS) df1.c
-
-main.o: main.c df1.h
-	$(CC) $(CFLAGS) main.c
 
 read_A2.o: read_A2.c df1.h
 	$(CC) $(CFLAGS) read_A2.c
