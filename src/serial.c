@@ -1,4 +1,4 @@
-/*  Copyright (C) 2002 Stephane LEICHT (stephane.leicht@gmail.com) 
+/*  Copyright (C) 2002 Stephane LEICHT (stephane.leicht@gmail.com)
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -156,7 +156,7 @@ int Df1_open_device(char Df1_port[20], int Df1_speed, int Df1_parity, int Df1_bi
 
   if (Df1_bit_s==2)
      Df1_tio.c_cflag = Df1_tio.c_cflag | CSTOPB;
-     
+
   Df1_tio.c_cflag = Df1_tio.c_cflag | CLOCAL | CREAD ;
   Df1_tio.c_oflag = 0;
   Df1_tio.c_lflag = 0; /*1=ICANON;*/
@@ -173,16 +173,11 @@ int Df1_open_device(char Df1_port[20], int Df1_speed, int Df1_parity, int Df1_bi
     MyLog("Can't set terminal parameters ");
     return -1 ;
   }
-  
+
   /* clean I & O device */
   tcflush(fd,TCIOFLUSH);
   /* init tns for DF1 */
   tns = (word) time((time_t *)0);
-  
+
   return fd ;
 }
-
-
-
-
-

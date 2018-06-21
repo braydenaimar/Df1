@@ -23,23 +23,23 @@ int Terminated=FALSE;
 void Termine (int sig);
 
 //******************** MAIN ************
-int main (void) 
+int main (void)
 {
 	openlog("DF1",LOG_NDELAY,LOG_DAEMON);
 	setlogmask(~LOG_MASK(LOG_DEBUG)); // no debug informations
-	
+
 	signal(SIGTERM,Termine);
 	signal(SIGINT,Termine);
 	signal(SIGQUIT,Termine);
 	signal(SIGSEGV,Termine);
-	
+
 	if ((file=Df1_open_device ("/dev/ttyS0", 9600,0,8,1)) == -1)
 		{
 			MyLog("OpenCom Failed\n");
 			return (-1);
 		}
 
-	#ifndef DEBUG	
+	#ifndef DEBUG
 	switch (fork())
 		{
 		case -1:
@@ -60,17 +60,17 @@ int main (void)
 								//closelog;
 								exit(2);
 							}
-							else 
-							{	
+							else
+							{
 	#endif
-					  server();	
+					  server();
 					  close (file);
 					  exit(0);
 #ifndef DEBUG
 							}
 	default : exit(0);
 	}
-#endif	
+#endif
 }
 //*********************************************
 void Termine (int sig)
@@ -94,7 +94,3 @@ void Termine (int sig)
 					break;
 	}
 }
-
-
-
-

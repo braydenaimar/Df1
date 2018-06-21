@@ -26,7 +26,7 @@
 #include <unistd.h>
 #include <termios.h>
 #include <errno.h>
-#include <time.h> 
+#include <time.h>
 #include <ctype.h>
 #include <syslog.h>
 #include <signal.h>
@@ -76,18 +76,18 @@ struct termios Df1_tio;							/* new serial port setting */
 #define DATA_FLAG 1
 #define CONTROL_FLAG 2
 
-//Server 
+//Server
 #define BUFSIZE		20
 #define PORT		17560
 #define MAXCONN		5
 #define MAX_CLIENTS	10
 
 /* Define Debug for a console appli, else Daemon*/
-//#define DEBUG
+// #define DEBUG
 #ifdef DEBUG
 	#define MyLog printf
 #else
-	#define MyLog(m) syslog(LOG_NOTICE,m) 
+	#define MyLog(m) syslog(LOG_NOTICE,m)
 #endif
 //**********************************************************************
 
@@ -152,7 +152,7 @@ void Df1_close_device(int);									/* close device and restore old parmeters */
 // common.c
 word bytes2word(byte lowb, byte highb);
 int add_word2buffer(TBuffer * buffer, word value);
-int add_byte2buffer(TBuffer *buffer, byte value); 
+int add_byte2buffer(TBuffer *buffer, byte value);
 int add_data2buffer(TBuffer * buffer, void * data, byte size);
 int add_data2bufferWithDLE(TBuffer * buffer, TMsg msg);
 void print_symbol(byte c);
@@ -161,8 +161,8 @@ int is_timeout(int start_time);
 // df1.c
 word calc_crc (word crc, word buffer) ;
 word compute_crc (TBuffer * buffer);
-int send_DF1(TMsg Df1Data);  
-int rcv_DF1(TMsg * Df1Data); 
+int send_DF1(TMsg Df1Data);
+int rcv_DF1(TMsg * Df1Data);
 int get_symbol(byte * b);
 void sendResponse(byte response);
 int read_byte(byte * b);
@@ -183,7 +183,3 @@ int calc_address(char *straddress,TThree_Address_Fields *address);
 int select_fnct(char *strquery, char *address, char *value);
 int read_socket(char *rcvmsg, char *response);
 int server(void);
-
-
-
-

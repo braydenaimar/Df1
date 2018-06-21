@@ -4,7 +4,7 @@
 # description: Server df1 for SLC500 AB PLC
 
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
-export PATH
+export PATH 
 
 # Source function library.
 #. /etc/rc.d/init.d/functions
@@ -32,4 +32,3 @@ case "$1" in
 	printf "Usage: df1 {start|stop|restart}\n"
 	exit 1
 esac
-
