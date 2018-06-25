@@ -33,7 +33,7 @@ int main (void)
 	signal(SIGQUIT,Termine);
 	signal(SIGSEGV,Termine);
 
-	if ((file=Df1_open_device ("/dev/ttyS0", 9600,0,8,1)) == -1)
+	if ((file=Df1_open_device ("/dev/ttyUSB1",19200,0,8,1)) == -1)
 		{
 			MyLog("OpenCom Failed\n");
 			return (-1);

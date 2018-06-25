@@ -4,7 +4,7 @@
 # description: Server df1 for SLC500 AB PLC
 
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
-export PATH 
+export PATH
 
 # Source function library.
 #. /etc/rc.d/init.d/functions
