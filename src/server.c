@@ -43,10 +43,12 @@ int server(void)
 	monadr.sin_addr.s_addr = INADDR_ANY;
 
 	if( bind(serv_sock, (struct sockaddr *)&monadr, sizeof(monadr)) == -1 ) {
+		MyLog("Server Exit 01");
 		return(1);
 	}
 
 	if( listen(serv_sock, MAXCONN) == -1 ) {
+		MyLog("Server Exit 02");
 		return(1);
 	}
 
@@ -62,6 +64,7 @@ int server(void)
 		if( select(nfds, &rfds, 0, 0, 0) == -1 )
 			{/* Non-Blocking Signals */
 				if( errno == EINTR ) continue;
+				MyLog("Server Exit 03");
 				return(1);
 			}
 		if( FD_ISSET(serv_sock, &rfds) ) /* New connection ?*/
@@ -69,6 +72,7 @@ int server(void)
 				taille = sizeof sonadr;
 				if( (client_sock = accept(serv_sock, (struct sockaddr *)&sonadr,(socklen_t *)&taille)) == -1 )
 					{
+						MyLog("Server Exit 04");
 						return(1);
 					}
 				//syslog(LOG_NOTICE,"client connection from %s \n", inet_ntoa(sonadr.sin_addr));
@@ -98,5 +102,6 @@ int server(void)
 			}
 		}
 	}
+	MyLog("Server Exit 05");
 	return(0);
 }
