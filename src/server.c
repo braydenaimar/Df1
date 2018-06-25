@@ -83,7 +83,7 @@ int server(void)
 				strcpy(message,"");
 				strcpy(response,"");
 				nb_lu = read(fd, message, BUFSIZE);
-				MyLog("nb_lu : %d/%d/%d\n",nb_lu,strlen(message),fd);
+				// MyLog("nb_lu : %d/%d/%d\n",nb_lu,strlen(message),fd);
 				if( nb_lu > 0 ) {
 					message[nb_lu]='\0';
 					if ((error=read_socket(message,response))!=SUCCES) {
