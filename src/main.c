@@ -33,11 +33,16 @@ int main (void)
 	signal(SIGQUIT,Termine);
 	signal(SIGSEGV,Termine);
 
-	if ((file=Df1_open_device ("/dev/ttyUSB0",19200,0,8,1)) == -1)
+	while ((file=Df1_open_device ("/dev/ttyUSB0",19200,0,8,1)) == -1)
 		{
 			MyLog("OpenCom Failed\n");
-			return (-1);
+			delay(2000);
 		}
+	// if ((file=Df1_open_device ("/dev/ttyUSB0",19200,0,8,1)) == -1)
+	// 	{
+	// 		MyLog("OpenCom Failed\n");
+	// 		return (-1);
+	// 	}
 
 	#ifndef DEBUG
 	switch (fork())

@@ -104,7 +104,7 @@ while True:
     messageJson = json.dumps(message)
     myAWSIoTMQTTClient.publish(mqttTopic, messageJson, 1)
 
-    print('Published topic %s: %s\n' % (topic, messageJson))
+    print('Published topic %s: %s\n' % (mqttTopic, messageJson))
 
     time.sleep(reportInterval)
 

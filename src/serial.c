@@ -55,7 +55,8 @@ int Df1_open_device(char Df1_port[20], int Df1_speed, int Df1_parity, int Df1_bi
   if(fd<0)
   {
     MyLog("Open device failure\n") ;
-    exit(-1) ;
+	return -1;
+    // exit(-1) ;
   }
 
   /* save olds settings port */
