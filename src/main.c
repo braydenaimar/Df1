@@ -36,7 +36,7 @@ int main (void)
 	while ((file=Df1_open_device ("/dev/ttyUSB0",19200,0,8,1)) == -1)
 		{
 			MyLog("OpenCom Failed\n");
-			delay(2000);
+			sleep(5);
 		}
 	// if ((file=Df1_open_device ("/dev/ttyUSB0",19200,0,8,1)) == -1)
 	// 	{
