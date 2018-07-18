@@ -73,19 +73,19 @@ AddressDatabase = {
 
 while True:
     df1.sendall('N7:50'.encode())
-    c1Power = int(s.recv(1024))
+    c1Power = int(df1.recv(1024))
     time.sleep(1);
 
     df1.sendall('N7:4'.encode())
-    c1Temp = int(s.recv(1024))
+    c1Temp = int(df1.recv(1024))
     time.sleep(1);
 
     df1.sendall('N7:49'.encode())
-    c2Power = int(s.recv(1024))
+    c2Power = int(df1.recv(1024))
     time.sleep(1);
 
     df1.sendall('N7:4'.encode())
-    c2Temp = int(s.recv(1024))
+    c2Temp = int(df1.recv(1024))
     time.sleep(1);
 
     message = {}
@@ -108,4 +108,4 @@ while True:
 
     time.sleep(reportInterval)
 
-s.close()
+df1.close()
