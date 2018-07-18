@@ -18,9 +18,9 @@ df1.connect((socketHost, socketPort))
 
 mqttHost = "a2fmz2m3b6n0fb.iot.us-east-1.amazonaws.com"
 mqttPort = 8883
-rootCAPath = abspath("certificates/RootCA.pem")
-certificatePath = abspath("certificates/039b18adcd-certificate.pem.crt")
-privateKeyPath = abspath("certificates/039b18adcd-private.pem.key")
+mqttRootCAPath = abspath("certificates/RootCA.pem")
+mqttCertificatePath = abspath("certificates/039b18adcd-certificate.pem.crt")
+mqttPrivateKeyPath = abspath("certificates/039b18adcd-private.pem.key")
 mqttTopic = "device/update_history"
 mqttClientId = "50016-TEST"
 
