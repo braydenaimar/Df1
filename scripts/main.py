@@ -18,7 +18,7 @@ df1 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 while True:
     try:
-        df1.connect((socketHost, socketPort
+        df1.connect((socketHost, socketPort))
         break
     except ConnectionRefusedError:
         print('Error connecting to ' + socketHost + '/' + socketPort)
@@ -84,8 +84,9 @@ while True:
     df1.sendall('N7:50'.encode())
     c1Power = df1.recv(1024)
 
-    if "error" in c1Power:
-        print('Error connecting to PLC: "' + c1Power + '"')
+    if b'error' in c1Power:
+        print('Error connecting to PLC: "' + str(c1Power) + '"')
+        print('Reattempt connection in ' + socketReconnectInterval + 'sec')
         time.sleep(socketReconnectInterval)
         continue
 
