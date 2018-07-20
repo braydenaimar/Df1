@@ -86,7 +86,7 @@ while True:
 
     if b'error' in c1Power:
         print('Error connecting to PLC: "' + str(c1Power) + '"')
-        print('Reattempt connection in ' + socketReconnectInterval + 'sec')
+        print('Reattempt connection in ' + int(socketReconnectInterval) + 'sec')
         time.sleep(socketReconnectInterval)
         continue
 
