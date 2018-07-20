@@ -11,10 +11,19 @@ reportInterval = 60 * 15  # 15mins [Seconds]
 
 socketHost = '127.0.0.1'
 socketPort = 17560
+socketReconnectInterval = 10
 
 # Initialize the socket connection to the Df1 daemon
 df1 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-df1.connect((socketHost, socketPort))
+
+while True:
+    try:
+        df1.connect((socketHost, socketPort
+        break
+    except ConnectionRefusedError:
+        print('Error connecting to ' + socketHost + '/' + socketPort)
+        print('Reattempt connection in ' + socketReconnectInterval + 'sec')
+        time.sleep(socketReconnectInterval)
 
 mqttHost = "a2fmz2m3b6n0fb.iot.us-east-1.amazonaws.com"
 mqttPort = 8883
@@ -73,20 +82,27 @@ AddressDatabase = {
 
 while True:
     df1.sendall('N7:50'.encode())
-    c1Power = int(df1.recv(1024))
-    time.sleep(1);
+    c1Power = df1.recv(1024)
+
+    if "error" in c1Power:
+        print('Error connecting to PLC: "' + c1Power + '"')
+        time.sleep(socketReconnectInterval)
+        continue
+
+    c1Power = int(c1Power)
+    time.sleep(1)
 
     df1.sendall('N7:4'.encode())
     c1Temp = int(df1.recv(1024))
-    time.sleep(1);
+    time.sleep(1)
 
     df1.sendall('N7:49'.encode())
     c2Power = int(df1.recv(1024))
-    time.sleep(1);
+    time.sleep(1)
 
     df1.sendall('N7:4'.encode())
     c2Temp = int(df1.recv(1024))
-    time.sleep(1);
+    time.sleep(1)
 
     message = {}
     message['SerialNumber'] = mqttClientId
